@@ -1,1 +1,384 @@
-# EAL-Circuit-Tool
+# EAL-Circuit-Tool<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EAL Circuit Toolkit — Vocabulary &amp; Sequence Cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#BFE1EC;
+    --paper:#FFFBF3;
+    --wire:#E2A248;
+    --coral:#F1665A;
+    --ink:#22303F;
+    --leaf:#4CA771;
+    --line:#E7D9BE;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--sky);
+    font-family:'Nunito', sans-serif;
+    color:var(--ink);
+    padding:28px 20px 60px;
+  }
+  .sheet{
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  /* ---------- Header ---------- */
+  .masthead{
+    background:var(--paper);
+    border-radius:22px;
+    padding:26px 30px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    box-shadow:0 3px 0 var(--line);
+    margin-bottom:22px;
+  }
+  .masthead h1{
+    font-family:'Baloo 2', sans-serif;
+    font-size:30px;
+    margin:0 0 4px;
+    color:var(--coral);
+  }
+  .masthead p{
+    margin:0;
+    font-weight:700;
+    font-size:14px;
+    color:var(--ink);
+    opacity:.75;
+  }
+  .badges{display:flex; gap:8px;}
+  .badge{
+    font-family:'Baloo 2', sans-serif;
+    font-size:13px;
+    background:var(--wire);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  .howto{
+    background:#fff;
+    border:2px dashed var(--wire);
+    border-radius:16px;
+    padding:16px 20px;
+    font-size:14px;
+    line-height:1.55;
+    margin-bottom:30px;
+  }
+  .howto b{color:var(--coral);}
+
+  /* ---------- Wire divider ---------- */
+  .wire-divider{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:36px 0 18px;
+  }
+  .wire-divider svg{flex:0 0 auto;}
+  .wire-divider h2{
+    font-family:'Baloo 2', sans-serif;
+    font-size:22px;
+    color:var(--ink);
+    margin:0;
+    white-space:nowrap;
+  }
+  .wire-divider .rule{
+    flex:1;
+    height:2px;
+    background:repeating-linear-gradient(90deg, var(--wire) 0 8px, transparent 8px 14px);
+  }
+  .section-note{
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--ink);
+    opacity:.7;
+    margin:-8px 0 18px;
+  }
+
+  /* ---------- Vocabulary cards ---------- */
+  .vocab-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(190px, 1fr));
+    gap:14px;
+  }
+  .vcard{
+    background:var(--paper);
+    border:2px dashed #D8C9A6;
+    border-radius:16px;
+    padding:14px 14px 12px;
+    text-align:center;
+    page-break-inside:avoid;
+  }
+  .vcard .icon{
+    font-size:34px;
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .vcard .en{
+    font-family:'Baloo 2', sans-serif;
+    font-size:19px;
+    color:var(--coral);
+    margin-bottom:8px;
+  }
+  .vcard .tr-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    padding:5px 2px;
+    border-top:1px solid #EEE2C8;
+  }
+  .vcard .tr-row:first-of-type{border-top:1px solid #EEE2C8;}
+  .vcard .flag{font-size:13px; opacity:.7; font-weight:800;}
+  .vcard .word{font-weight:800;}
+  .vcard .roman{display:block; font-size:11px; font-weight:600; opacity:.65;}
+  .vcard.blank{
+    border-color:var(--leaf);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height:150px;
+  }
+  .vcard.blank .plus{font-size:30px; color:var(--leaf); font-weight:800;}
+  .vcard.blank .label{font-size:12px; font-weight:700; opacity:.6; margin-top:4px;}
+
+  /* ---------- Sequence cards ---------- */
+  .seq-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap:14px;
+  }
+  .scard{
+    background:var(--paper);
+    border:2px dashed #D8C9A6;
+    border-radius:16px;
+    padding:16px 14px 14px;
+    position:relative;
+    page-break-inside:avoid;
+  }
+  .scard .num{
+    position:absolute;
+    top:-12px; left:-12px;
+    width:34px; height:34px;
+    background:var(--coral);
+    color:#fff;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Baloo 2', sans-serif;
+    font-size:16px;
+    box-shadow:0 2px 0 rgba(0,0,0,.12);
+  }
+  .scard .icon{font-size:28px; margin-bottom:6px;}
+  .scard .cap{font-size:14.5px; font-weight:800; line-height:1.3;}
+
+  /* ---------- Sentence frames ---------- */
+  .frame-list{display:flex; flex-direction:column; gap:12px;}
+  .fcard{
+    background:var(--paper);
+    border:2px dashed #D8C9A6;
+    border-radius:14px;
+    padding:14px 18px;
+    font-size:16px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .fcard .tag{
+    font-family:'Baloo 2', sans-serif;
+    background:var(--wire);
+    color:#fff;
+    font-size:12px;
+    padding:4px 10px;
+    border-radius:999px;
+    margin-right:4px;
+  }
+  .blankline{
+    display:inline-block;
+    min-width:90px;
+    border-bottom:2.5px solid var(--coral);
+    height:1px;
+  }
+  .fcard.hyp{border-color:var(--leaf);}
+  .fcard.hyp .tag{background:var(--leaf);}
+
+  footer{
+    text-align:center;
+    font-size:12px;
+    font-weight:700;
+    opacity:.55;
+    margin-top:40px;
+  }
+
+  .print-btn{
+    font-family:'Baloo 2', sans-serif;
+    background:var(--coral);
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 3px 0 rgba(0,0,0,.15);
+  }
+  .print-btn:hover{filter:brightness(1.05);}
+
+  @media print{
+    body{background:#fff; padding:0;}
+    .masthead{box-shadow:none;}
+    .print-btn{display:none;}
+    .wire-divider{margin:26px 0 14px;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="masthead">
+    <div>
+      <h1>⚡ Circuit Toolkit — EAL Support</h1>
+      <p>Y4 IPC Science · Korean &amp; Japanese bilingual cards</p>
+    </div>
+    <div class="badges">
+      <span class="badge">한국어</span>
+      <span class="badge">日本語</span>
+      <button class="print-btn" onclick="window.print()">🖨 Print</button>
+    </div>
+  </div>
+
+  <div class="howto">
+    <b>How to use:</b> Print on card stock and cut along the dashed lines (laminate for reuse across classes). Give each EAL student the <b>vocabulary set</b> to keep on their desk during the demonstration, the <b>sequence cards</b> to order while watching, and the <b>sentence frame cards</b> to support their written procedure. The two blank cards at the end of the vocabulary set let students add a word in their own language for anything not covered here.
+  </div>
+
+  <!-- VOCABULARY -->
+  <div class="wire-divider">
+    <svg width="26" height="26" viewBox="0 0 26 26"><path d="M2 20 C 8 8, 18 8, 24 20" stroke="#E2A248" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+    <h2>1 · Bilingual Vocabulary Cards</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="section-note">Cut into individual cards. One set per student or per table.</p>
+
+  <div class="vocab-grid">
+
+    <div class="vcard">
+      <div class="icon">🔋</div>
+      <div class="en">battery</div>
+      <div class="tr-row"><span class="flag">KR</span><span class="word">배터리<span class="roman">baeteori</span></span></div>
+      <div class="tr-row"><span class="flag">JP</span><span class="word" lang="ja">電池<span class="roman">denchi</span></span></div>
+    </div>
+
+    <div class="vcard">
+      <div class="icon">➰</div>
+      <div class="en">wire</div>
+      <div class="tr-row"><span class="flag">KR</span><span class="word">전선<span class="roman">jeonseon</span></span></div>
+      <div class="tr-row"><span class="flag">JP</span><span class="word" lang="ja">電線<span class="roman">densen</span></span></div>
+    </div>
+
+    <div class="vcard">
+      <div class="icon">💡</div>
+      <div class="en">bulb</div>
+      <div class="tr-row"><span class="flag">KR</span><span class="word">전구<span class="roman">jeongu</span></span></div>
+      <div class="tr-row"><span class="flag">JP</span><span class="word" lang="ja">電球<span class="roman">denkyū</span></span></div>
+    </div>
+
+    <div class="vcard">
+      <div class="icon">🔘</div>
+      <div class="en">switch</div>
+      <div class="tr-row"><span class="flag">KR</span><span class="word">스위치<span class="roman">seuwichi</span></span></div>
+      <div class="tr-row"><span class="flag">JP</span><span class="word" lang="ja">スイッチ<span class="roman">suicchi</span></span></div>
+    </div>
+
+    <div class="vcard">
+      <div class="icon">⊕⊖</div>
+      <div class="en">terminal</div>
+      <div class="tr-row"><span class="flag">KR</span><span class="word">단자<span class="roman">danja</span></span></div>
+      <div class="tr-row"><span class="flag">JP</span><span class="word" lang="ja">端子<span class="roman">tanshi</span></span></div>
+    </div>
+
+    <div class="vcard">
+      <div class="icon">🔗</div>
+      <div class="en">connect</div>
+      <div class="tr-row"><span class="flag">KR</span><span class="word">연결하다<span class="roman">yeongyeolhada</span></span></div>
+      <div class="tr-row"><span class="flag">JP</span><span class="word" lang="ja">つなぐ<span class="roman">tsunagu</span></span></div>
+    </div>
+
+    <div class="vcard">
+      <div class="icon">➕</div>
+      <div class="en">positive</div>
+      <div class="tr-row"><span class="flag">KR</span><span class="word">양극<span class="roman">yanggeuk</span></span></div>
+      <div class="tr-row"><span class="flag">JP</span><span class="word" lang="ja">プラス<span class="roman">purasu</span></span></div>
+    </div>
+
+    <div class="vcard">
+      <div class="icon">➖</div>
+      <div class="en">negative</div>
+      <div class="tr-row"><span class="flag">KR</span><span class="word">음극<span class="roman">eumgeuk</span></span></div>
+      <div class="tr-row"><span class="flag">JP</span><span class="word" lang="ja">マイナス<span class="roman">mainasu</span></span></div>
+    </div>
+
+    <div class="vcard">
+      <div class="icon">⭕</div>
+      <div class="en">circuit</div>
+      <div class="tr-row"><span class="flag">KR</span><span class="word">회로<span class="roman">hoero</span></span></div>
+      <div class="tr-row"><span class="flag">JP</span><span class="word" lang="ja">回路<span class="roman">kairo</span></span></div>
+    </div>
+
+    <div class="vcard blank">
+      <div class="plus">+</div>
+      <div class="label">add your own word</div>
+    </div>
+    <div class="vcard blank">
+      <div class="plus">+</div>
+      <div class="label">add your own word</div>
+    </div>
+
+  </div>
+
+  <!-- SEQUENCE -->
+  <div class="wire-divider">
+    <svg width="26" height="26" viewBox="0 0 26 26"><path d="M2 20 C 8 8, 18 8, 24 20" stroke="#E2A248" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+    <h2>2 · Visual Sequence Cards</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="section-note">Matches the teacher's 8-step demonstration. Students order these while watching, then use them to write their procedure.</p>
+
+  <div class="seq-grid">
+    <div class="scard"><div class="num">1</div><div class="icon">🔋🔌💡🔘</div><div class="cap">Get the battery, wires, switch &amp; bulb</div></div>
+    <div class="scard"><div class="num">2</div><div class="icon">⊕⊖</div><div class="cap">Find the + and − ends of the battery</div></div>
+    <div class="scard"><div class="num">3</div><div class="icon">🔋➖🔘</div><div class="cap">Connect wire 1 to the + terminal</div></div>
+    <div class="scard"><div class="num">4</div><div class="icon">🔘➖</div><div class="cap">Connect the other end to the switch</div></div>
+    <div class="scard"><div class="num">5</div><div class="icon">🔘➖💡</div><div class="cap">Connect wire 2 to the switch</div></div>
+    <div class="scard"><div class="num">6</div><div class="icon">➖💡</div><div class="cap">Connect wire 2 to the bulb</div></div>
+    <div class="scard"><div class="num">7</div><div class="icon">💡➖🔋</div><div class="cap">Connect the last wire back to −</div></div>
+    <div class="scard"><div class="num">8</div><div class="icon">🔘✨💡</div><div class="cap">Close the switch — does it light up?</div></div>
+  </div>
+
+  <!-- SENTENCE FRAMES -->
+  <div class="wire-divider">
+    <svg width="26" height="26" viewBox="0 0 26 26"><path d="M2 20 C 8 8, 18 8, 24 20" stroke="#E2A248" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+    <h2>3 · Sentence Frame Cards</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="section-note">Students fill in the gaps using words from the vocabulary cards.</p>
+
+  <div class="frame-list">
+    <div class="fcard"><span class="tag">Step 1</span> First, I get a <span class="blankline"></span>.</div>
+    <div class="fcard"><span class="tag">Step 2</span> Next, I connect the <span class="blankline"></span> to the <span class="blankline"></span>.</div>
+    <div class="fcard"><span class="tag">Step 3</span> Then, I connect the <span class="blankline"></span> to the <span class="blankline"></span>.</div>
+    <div class="fcard"><span class="tag">Step 4</span> Finally, I close the switch and the bulb <span class="blankline"></span>.</div>
+    <div class="fcard hyp"><span class="tag">Hypothesis</span> I think the bulb will <span class="blankline"></span> because <span class="blankline"></span>.</div>
+  </div>
+
+  <footer>Y4 IPC Science — Circuit Investigation — EAL Toolkit</footer>
+
+</div>
+</body>
+</html>
